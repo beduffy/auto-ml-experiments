@@ -117,7 +117,7 @@ all_models = []
 for i in range(population_size):
     all_models.append(create_net())
 
-for round in range(1000):
+for round in range(100000):
     print('Iteration: {}'.format(round))
 
     best_model_idx_loss = []
@@ -125,7 +125,7 @@ for round in range(1000):
         loss, accuracy = test_model(model)
         best_model_idx_loss.append((idx, loss.data[0], accuracy))
 
-    # best_model_idx_loss_sorted = sorted(best_model_idx_loss, key=lambda x: x[1]) # sort by loss
+    # best_model_idx_loss_sorted = sorted(best_model_idx_loss, key=lambda x: x[1]) # sort by loss. Does badly for some reason?
     best_model_idx_loss_sorted = sorted(best_model_idx_loss, key=lambda x: x[2], reverse=True) # sort by accuracy
     all_accuracies = [x[2] for x in best_model_idx_loss_sorted]
     all_losses = [x[1] for x in best_model_idx_loss_sorted]
